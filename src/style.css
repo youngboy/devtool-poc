@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TODO:
+  move following customization to config.js's plugin
+  - get better editor auto-complete support
+  - module separation concerns
+*/
+@layer base {
+  html {
+    font-family: ".SFNSDisplay-Regular", "Helvetica Neue", "Lucida Grande",
+      sans-serif;
+  }
+  :root {
+    --color-primary: 26 115 232;
+    --color-primary-variant: rgb(66 133 244);
+    --color-body: 48 57 66;
+    --color-bg: 255 255 255;
+    --color-syntax-1: 200 0 0;
+    --color-syntax-2: 136 18 128;
+    --color-syntax-3: 26 26 166;
+    --color-token-tag: 136 18 128;
+    --color-token-attribute: 153 69 0;
+    --color-bg-elevation-1: 241 243 244;
+    --color-bg-elevation-2: 222 225 230;
+    --color-details-hairline: 202 205 209;
+    --color-text-primary: 32 33 36;
+    --color-text-secondary: 95 99 104;
+    --color-text-disable: 128 134 139;
+    --color-tab-selected: 51 51 51;
+    --color-selection-bg: rgba(141 199 248/60%);
+
+    --divider-line: rgb(0 0 0 / 10%);
+
+    /* TODO: move to input plugin */
+    --color-input-outline: rgb(218 220 224);
+    --color-input-outline-active: rgb(26 115 232);
+    --color-input-outline-error: rgb(217 48 37);
+    --color-input-text-disabled: rgba(128 134 139 / 50%);
+
+    --legacy-accent-color: #1a73e8;
+    --legacy-accent-fg-color: #1a73e8;
+    --legacy-selection-fg-color: #fff;
+    --legacy-selection-inactive-bg-color: #dadada;
+    --legacy-selection-inactive-fg-color: #5a5a5a;
+
+    /* TODO: move to icon plugin by using base64 */
+    --image-file-treeoutlineTriangles: url("./assets/treeoutlineTriangles.svg");
+    --image-file-nodeSearch: url("./assets/nodeSearch.svg");
+    --image-file-mediumIcons: url("./assets/mediumIcons.svg");
+
+    color-scheme: light dark;
+    color: theme(colors.body);
+    background-color: theme(colors.bg);
+  }
+  body {
+    font-size: 12px;
+    cursor: default;
+    user-select: none;
+    tab-size: 4;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-primary: 138 180 248;
+      --color-primary-variant: rgb(102 157 246);
+      --color-body: 189 198 207;
+      --color-bg: 32 33 36;
+      --color-syntax-1: 53 212 199;
+      --color-syntax-2: 93 176 215;
+      --color-syntax-3: 241 151 102;
+      --color-token-tag: 93 176 215;
+      --color-token-attribute: 155 187 220;
+      --color-details-hairline: 76 76 80;
+      --color-bg-elevation-1: 41 42 45;
+      --color-bg-elevation-2: 53 54 58;
+      --color-text-primary: 232 234 237;
+      --color-text-secondary: 154 160 166;
+      --color-text-disable: 128 134 139;
+      --color-tab-selected: 234 234 234;
+
+      --divider-line: rgb(255 255 255 / 10%);
+      --color-input-outline: rgb(60 64 67);
+      --color-input-outline-active: rgb(138 180 248);
+      --color-input-outline-error: rgb(242 139 130);
+      --color-input-text-disabled: rgba(128 134 139 / 70%);
+
+      --legacy-accent-color: #0e639c;
+      --legacy-accent-fg-color: #ccc;
+      --legacy-selection-fg-color: #cdcdcd;
+      --legacy-selection-inactive-bg-color: hsl(0deg 0% 28%);
+      --legacy-selection-inactive-fg-color: #cdcdcd;
+    }
+  }
+}
+
+@layer components {
+  .gray-info-message {
+    white-space: nowrap;
+    padding: 6px;
+    text-align: center;
+    font-style: italic;
+    color: theme(colors.fg.secondary);
+  }
+}
+
+@layer utilities {
+  .hairline-b {
+    border-bottom: 1px solid theme(colors.details-hairline);
+  }
+}

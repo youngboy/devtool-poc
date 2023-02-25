@@ -1,28 +1,31 @@
-import { once } from '../utils/bridge';
-import { log } from '../utils';
-import { createRuntimeMessanger, DEVTOOLS_CONNECTION_NAME } from './messager';
+import { once } from "../utils/bridge";
+import { log } from "../utils";
+import { createRuntimeMessanger, DEVTOOLS_CONNECTION_NAME } from "./messager";
 
-log('Devtools script working.');
+log("Devtools script working.");
 
 const { onRuntimeMessage, postRuntimeMessage } = createRuntimeMessanger();
 
 // Create a connection to the background page
 chrome.runtime.connect({ name: DEVTOOLS_CONNECTION_NAME });
 
-postRuntimeMessage('DevtoolsScriptConnected', chrome.devtools.inspectedWindow.tabId);
+postRuntimeMessage(
+  "DevtoolsScriptConnected",
+  chrome.devtools.inspectedWindow.tabId
+);
 
 let panel: chrome.devtools.panels.ExtensionPanel | undefined;
 
 function getComponentProps() {
-  const container: any = document.querySelector('[q\\:container]');
+  const container: any = document.querySelector("[q\\:container]");
   if (!container) {
     return {
-      status: 'No q container detected',
+      status: "No q container detected",
     };
   }
-  if (container.attributes['q:container'].value === 'paused') {
+  if (container.attributes["q:container"].value === "paused") {
     return {
-      status: 'container is paused',
+      status: "container is paused",
     };
   }
 
@@ -33,16 +36,16 @@ function getComponentProps() {
         return false;
       }
       if (
-        (el.data || '').startsWith('qv') &&
+        (el.data || "").startsWith("qv") &&
         // no slot placeholder
-        (el.data || '').indexOf('q:sref') < 0
+        (el.data || "").indexOf("q:sref") < 0
       ) {
         searchDepth += 1;
         if (searchDepth === 1) {
           return true;
         }
       }
-      if ((el.data || '').startsWith('/qv')) {
+      if ((el.data || "").startsWith("/qv")) {
         searchDepth -= 1;
       }
       return false;
@@ -61,8 +64,8 @@ function getComponentProps() {
   //       to make developer understanding captured lexical scope
   function formatQrl(qrl: any) {
     return {
-      displayName: qrl?.$dev$?.displayName,
-      file: qrl?.$dev$?.file,
+      displayName: qrl?.dev?.displayName,
+      file: qrl?.dev?.file,
       // above attrs would be empty for unknown reason
       // save rawQrl here for debugging
       rawQrl: qrl,
@@ -83,7 +86,7 @@ function getComponentProps() {
   const selected = $0 as any;
   const hostEl = searchHostEl(selected);
   const ctx: any = {
-    Selected: 'Select a component to inspect',
+    Selected: "Select a component to inspect",
   };
   if (selected && selected._qc_) {
     ctx.Selected = {
@@ -103,7 +106,7 @@ function getComponentProps() {
 
 function checkAndInit() {
   if (!panel) {
-    chrome.devtools.inspectedWindow.eval('window.qDev', (result) => {
+    chrome.devtools.inspectedWindow.eval("window.qDev", (result) => {
       if (result) {
         onQwikPage();
       }
@@ -112,23 +115,28 @@ function checkAndInit() {
 }
 
 function onQwikPage() {
-  if (panel) return log('Panel already exists.');
+  if (panel) return log("Panel already exists.");
 
-  log('Qwik on page - creating panel...');
-  chrome.devtools.panels.create('Qwik', 'assets/icons/32.png', 'panel/index.html', (newPanel) => {
-    panel = newPanel;
-    log('Panel created.');
-  });
+  log("Qwik on page - creating panel...");
+  chrome.devtools.panels.create(
+    "Qwik",
+    "assets/icons/32.png",
+    "panel/index.html",
+    (newPanel) => {
+      panel = newPanel;
+      log("Panel created.");
+    }
+  );
 
-  chrome.devtools.panels.elements.createSidebarPane('Qwik', (sidebar) => {
-    sidebar.setExpression('(' + getComponentProps.toString() + ')()');
+  chrome.devtools.panels.elements.createSidebarPane("Qwik", (sidebar) => {
+    sidebar.setExpression("(" + getComponentProps.toString() + ")()");
     chrome.devtools.panels.elements.onSelectionChanged.addListener(() => {
-      sidebar.setExpression('(' + getComponentProps.toString() + ')()');
+      sidebar.setExpression("(" + getComponentProps.toString() + ")()");
     });
   });
 }
 
-once(onRuntimeMessage, 'QwikOnPage', onQwikPage);
-onRuntimeMessage('NavComplete', checkAndInit);
+once(onRuntimeMessage, "QwikOnPage", onQwikPage);
+onRuntimeMessage("NavComplete", checkAndInit);
 checkAndInit();
 export {};

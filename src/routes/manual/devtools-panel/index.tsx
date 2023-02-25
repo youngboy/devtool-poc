@@ -1,7 +1,7 @@
 import {
   Component,
   component$,
-  useClientEffect$,
+  useBrowserVisibleTask$,
   useSignal,
 } from "@builder.io/qwik";
 import { DocumentHead } from "@builder.io/qwik-city";
@@ -10,6 +10,7 @@ import { ResizerWidget } from "~/ui/ResizerWidget";
 import TabList from "~/ui/TabList";
 import InfoTool from "~/ui/Tools/Info";
 import PerformanceTool from "~/ui/Tools/Performance";
+import RequestTool from "~/ui/Tools/Request";
 import { ToolSidebar } from "~/ui/Tools/Sidebar";
 
 type MainCmp = Component<{
@@ -50,11 +51,12 @@ export default component$(() => {
   const mainEls: Record<string, MainCmp> = {
     Info: InfoTool,
     Performance: PerformanceTool,
+    Requests: RequestTool,
   };
   const mainContent = useSignal<MainCmp | undefined | null>(null);
-  const selectedTool = useSignal(sidebarData[0].children[1]);
+  const selectedTool = useSignal(sidebarData[1].children[0]);
   // FIXME: useTask here causing mainContent lose reactive bindings
-  useClientEffect$(({ track }) => {
+  useBrowserVisibleTask$(({ track }) => {
     const item = track(() => selectedTool.value);
     // FIXME: (none ssr mode will complaining 'Identifier ("mainContent") can not be captured...')
     mainContent.value = mainEls[item.title] || undefined;
@@ -65,7 +67,7 @@ export default component$(() => {
       <TabList activeTabId={activeGuiTabId} headers={tabHeaders} />
       <ResizerWidget class="h-96" defaultSize={208}>
         <ToolSidebar
-          q:slot="sidebar"
+          q:slot="nav"
           selected={selectedTool}
           treeData={sidebarData}
           onSelected$={(val) => {

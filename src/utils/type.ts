@@ -1,5 +1,5 @@
 export type Qrl = {
-  $dev$: {
+  dev: {
     file: string;
     lo: number;
     hi: number;

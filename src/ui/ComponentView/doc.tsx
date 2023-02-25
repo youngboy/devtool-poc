@@ -1,7 +1,7 @@
 import {
   component$,
   noSerialize,
-  useClientEffect$,
+  useBrowserVisibleTask$,
   useSignal,
 } from "@builder.io/qwik";
 import InspectEl from ".";
@@ -15,12 +15,12 @@ export const Selected = component$((props: ClassProps) => {
   const qContext = useSignal<ReturnType<typeof getQcContext> | undefined>(
     undefined
   );
-  useClientEffect$(async () => {
+  useBrowserVisibleTask$(async () => {
     qContext.value = noSerialize(
       getQcContext(document.querySelector("[role='tab']") || undefined)
     );
   });
-  // FIXME: (qwik-jsx) warning about useClientEffect$ if without outer placeholder div
+  // FIXME: (qwik-jsx) warning about useBrowserVisibleTask$ if without outer placeholder div
   return (
     <div>
       <InspectEl qContext={qContext} />

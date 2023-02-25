@@ -35,7 +35,8 @@ export interface TableProps {
   class?: string;
   style?: any;
   fillBottom?: boolean;
-  handleSelect$?: PropFunction<(row: string[]) => void>;
+  placeholder?: boolean;
+  handleSelect$?: PropFunction<(row: string[], rowIndex: number) => void>;
 }
 
 export const Table = component$<TableProps>((props) => {
@@ -66,7 +67,7 @@ export const Table = component$<TableProps>((props) => {
             class={{ selected: rowIndex === selectedRowIndex.value }}
             onPointerDown$={() => {
               selectedRowIndex.value = rowIndex;
-              props.handleSelect$?.apply(null, [row]);
+              props.handleSelect$?.apply(null, [row, rowIndex]);
             }}
           >
             {row.map((col) => (
@@ -74,8 +75,22 @@ export const Table = component$<TableProps>((props) => {
             ))}
           </tr>
         ))}
+        {props.placeholder ? (
+          <tr
+            tabIndex={0}
+            class={{ selected: displayRows.length === selectedRowIndex.value }}
+            onPointerDown$={() => {
+              selectedRowIndex.value = displayRows.length;
+              props.handleSelect$?.apply(null, [[], displayRows.length]);
+            }}
+          >
+            {displayHeaders.map((h) => (
+              <td></td>
+            ))}
+          </tr>
+        ) : null}
         {props.fillBottom ? (
-          <tr class="h-auto">
+          <tr class="fill-bottom-row h-auto">
             {displayHeaders.map((h) => (
               <td class="h-auto border-b-0"></td>
             ))}

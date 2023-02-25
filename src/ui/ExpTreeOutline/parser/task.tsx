@@ -15,7 +15,7 @@ const taskParser: Parser<any> = {
     </span>
   ),
   expandedObj: (val) => qrlParser.expandedObj?.(val.$qrl$),
-  collapsedPreview: (props) => <>{`${props.val.$qrl$?.$dev$?.displayName}`}</>,
+  collapsedPreview: (props) => <>{`${props.val.$qrl$?.dev?.displayName}`}</>,
 };
 
 export default taskParser;

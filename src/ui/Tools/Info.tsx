@@ -1,4 +1,8 @@
-import { component$, useClientEffect$, useSignal } from "@builder.io/qwik";
+import {
+  component$,
+  useBrowserVisibleTask$,
+  useSignal,
+} from "@builder.io/qwik";
 import { DevData } from "~/routes/_dev";
 import { DisplayDataType, getDisplayTableData, Table } from "../Table";
 
@@ -42,7 +46,7 @@ export default component$<InfoToolProps>((props) => {
     displayHeaders: menuHeaders.map((r) => r.title),
     displayRows: [],
   });
-  useClientEffect$(() => {
+  useBrowserVisibleTask$(() => {
     fetch("/_dev")
       .then((res) => res.json())
       .then((body) => {

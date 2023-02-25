@@ -5,42 +5,53 @@ import { DisplayDataType, getDisplayTableData, Table } from "../Table";
 
 export interface PerformanceProps {}
 
-export const perfHeaders = [
+export const headers = [
   {
     title: "DateTime",
     accessor: "dateTime",
   },
   {
-    title: "Operations",
-    accessor: "ops",
+    title: "Type",
+    accessor: "type",
   },
   {
-    title: "Roots",
-    accessor: "roots",
-  },
-  {
-    title: "Components",
-    accessor: "components",
+    title: "Address",
+    accessor: "address",
   },
 ];
 
 export const fixtures = [
   {
     dateTime: new Date().toLocaleString(),
-    ops: "24x",
-    roots: "VirtualElement",
+    type: "ServerRoute",
+    address: "/manual",
   },
   {
     dateTime: new Date().toLocaleString(),
-    ops: "32x",
-    roots: "VirtualElement",
+    type: "ClientRoute",
+    address: "/manual/devtools-panel",
+  },
+  {
+    dateTime: new Date().toLocaleString(),
+    type: "Loader",
+    address: "/api/test",
+  },
+  {
+    dateTime: new Date().toLocaleString(),
+    type: "Action",
+    address: "/api/xx",
+  },
+  {
+    dateTime: new Date().toLocaleString(),
+    type: "$Server",
+    address: "/component/qrl",
   },
 ];
 
 export default component$<PerformanceProps>((props) => {
-  const perfData = useSignal<DisplayDataType>(
+  const requests = useSignal<DisplayDataType>(
     getDisplayTableData({
-      headers: perfHeaders,
+      headers: headers,
       rows: fixtures,
     })
   );
@@ -52,14 +63,14 @@ export default component$<PerformanceProps>((props) => {
           q:slot="nav"
           fillBottom
           class="absolute inset-0 border-0"
-          placeholder
           style={{
             "--table-row-height": "20px",
           }}
+          placeholder
           handleSelect$={(row, rowIndex) => {
             selectedRow.value = fixtures[rowIndex];
           }}
-          displayData={perfData.value}
+          displayData={requests.value}
         />
         <div q:slot="main" class="h-full">
           {selectedRow.value ? (

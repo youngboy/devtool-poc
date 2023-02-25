@@ -1,7 +1,7 @@
 import {
   component$,
   useSignal,
-  useClientEffect$,
+  useBrowserVisibleTask$,
   useTask$,
   Signal,
 } from "@builder.io/qwik";
@@ -39,7 +39,7 @@ export default component$((props: TabListProps) => {
       };
     }
   });
-  useClientEffect$(() => {
+  useBrowserVisibleTask$(() => {
     props.activeTabId.value = props.headers[0]?.id;
   });
 

@@ -15,7 +15,7 @@ module.exports = plugin(({ addComponents, theme }) => {
       outline: "none",
       color: theme("colors.fg.primary"),
     },
-    "tbody tr:not(.selected):nth-child(2n)": {
+    "tbody tr:not(.selected):not(.fill-bottom-row):nth-child(2n)": {
       backgroundColor: theme("colors.elevation.1"),
     },
     "tbody tr.selected": {

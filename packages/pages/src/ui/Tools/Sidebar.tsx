@@ -19,6 +19,7 @@ export const ToolSidebar = component$<ToolSidebarProps>((props) => {
       class="tree-outline"
       style={{
         "--tree-row-mh": "20px",
+        "--tree-select": "none",
       }}
     >
       {props.treeData.map((item, index) => (
@@ -26,7 +27,7 @@ export const ToolSidebar = component$<ToolSidebarProps>((props) => {
           <li
             class={[
               "not-expand-icon px-2 pt-[10px] pb-[6px]",
-              index > 0 ? "border-t border-details-hairline" : "",
+              index > 0 ? "border-t border-details-hairline" : undefined,
             ]}
           >
             {item.title}
@@ -34,9 +35,9 @@ export const ToolSidebar = component$<ToolSidebarProps>((props) => {
           <ol class="tree-outline pb-[10px]">
             {item.children.map((child) => (
               <li
-                class={
-                  props.selected.value.title === child.title ? "selected" : ""
-                }
+                class={{
+                  selected: props.selected.value.title === child.title,
+                }}
                 onPointerDown$={() => {
                   props.onSelected$(child);
                 }}

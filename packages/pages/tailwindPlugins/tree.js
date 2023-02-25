@@ -13,7 +13,7 @@ const tree = plugin(({ addComponents, theme }) => {
       alignItems: "center",
       position: "relative",
       minHeight: "var(--tree-row-mh, 16px)",
-      userSelect: "text",
+      userSelect: "var(--tree-select, text)",
       textOverflow: "ellipsis",
       whiteSpace: "nowrap",
     },

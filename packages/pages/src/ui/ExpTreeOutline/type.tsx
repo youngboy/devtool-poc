@@ -1,5 +1,10 @@
 import { JSX } from "@builder.io/qwik/jsx-runtime";
+import { Qrl } from "~/utils/type";
 
+type ObjectMeta = {
+  $typeof$: string;
+  $typeName$: string;
+};
 export type PrimitiveType =
   | string
   | boolean
@@ -9,7 +14,8 @@ export type PrimitiveType =
   | Function;
 
 export type ArrayType = unknown[];
-export type ObjectType = Record<string, unknown>;
+export type ObjectType = ObjectMeta & Record<string, unknown>;
+export type QrlType = ObjectMeta & Qrl;
 export type PossibleValueType = PrimitiveType | ArrayType | ObjectType;
 
 export type TargetType = Record<string, PossibleValueType>;

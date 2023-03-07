@@ -1,26 +1,30 @@
-import { Qrl } from "~/utils/type";
-import { Parser } from "../type";
+import { Parser, QrlType } from "../type";
+import { getObjectClassName } from "../utils";
 
-function getQrlAttrs(qrl?: Qrl) {
-  if (!qrl?.dev) {
-    return {};
-  }
-  return {
-    name: qrl.dev.displayName,
+function getQrlAttrs(qrl: QrlType) {
+  const attrs = {
+    name: qrl.dev?.displayName || qrl.$symbol$,
+    chunk: qrl.$chunk$,
     captureRef: qrl.$captureRef$,
-    filepath: `vscode://file${qrl.dev.file}:${qrl.dev.lo}:${qrl.dev.hi}`,
+    filepath: "",
   };
+  if (qrl.dev) {
+    attrs.filepath = `vscode://file${qrl.dev.file}:${qrl.dev.lo}:${qrl.dev.hi}`;
+  }
+  return attrs;
 }
 
-const qrlParser: Parser<Qrl> = {
-  test: (val): val is Qrl => {
-    return !!val && val.hasOwnProperty("dev") && val?.dev;
+const qrlParser: Parser<QrlType> = {
+  test: (val): val is QrlType => {
+    return getObjectClassName(val) === "invokeQRL";
   },
   displayName: (props) => (
-    <span class={`${props.expanded ? "" : "text-fg-secondary"}`}>$Qrl</span>
+    <span class={`${props.expanded ? "" : "text-fg-secondary"}`}>
+      {getObjectClassName(props.val)}
+    </span>
   ),
   expandedObj: getQrlAttrs,
-  collapsedPreview: (props) => <>{`${props.val.dev.displayName}`}</>,
+  collapsedPreview: (props) => <>{`${props.val.dev?.displayName || ""}`}</>,
 };
 
 export default qrlParser;

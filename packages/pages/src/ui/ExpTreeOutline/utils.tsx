@@ -5,9 +5,9 @@ export function isObjectNode(value: PossibleValueType): value is ObjectType {
   return !!(value && typeof value === "object");
 }
 
-export function getObjectClassName(value: unknown) {
+export function getObjectClassName(value?: ObjectType | any) {
   if (!value) {
     return "";
   }
-  return value?.constructor?.name;
+  return value.$typeName$ || value.constructor?.name;
 }

@@ -3,56 +3,60 @@ lockfileVersion: 5.4
 importers:
 
   .:
+    specifiers:
+      '@types/chrome': ^0.0.206
+      '@types/eslint': 8.4.10
+      '@types/node': ^18.11.16
+      '@typescript-eslint/eslint-plugin': 5.46.1
+      '@typescript-eslint/parser': 5.46.1
+      eslint: 8.30.0
+      eslint-plugin-qwik: ^0.16.1
+      prettier: 2.8.1
+      prettier-plugin-tailwindcss: ^0.1.11
+      typescript: 4.9.4
+    devDependencies:
+      '@types/chrome': 0.0.206
+      '@types/eslint': 8.4.10
+      '@types/node': 18.14.1
+      '@typescript-eslint/eslint-plugin': 5.46.1_mqzxmroayievgzgel6yrqgih5i
+      '@typescript-eslint/parser': 5.46.1_lzzuuodtsqwxnvqeq4g4likcqa
+      eslint: 8.30.0
+      eslint-plugin-qwik: 0.16.2_eslint@8.30.0
+      prettier: 2.8.1
+      prettier-plugin-tailwindcss: 0.1.13_prettier@2.8.1
+      typescript: 4.9.4
+
+  packages/messages:
     specifiers: {}
 
   packages/pages:
     specifiers:
-      '@builder.io/qwik': 0.19.2
-      '@builder.io/qwik-city': 0.4.0
+      '@builder.io/qwik': 0.20.1
+      '@builder.io/qwik-city': 0.5.2
       '@crxjs/vite-plugin': ^1.0.14
-      '@types/chrome': ^0.0.206
-      '@types/eslint': 8.4.10
-      '@types/node': ^18.11.16
       '@types/node-fetch': latest
-      '@typescript-eslint/eslint-plugin': 5.46.1
-      '@typescript-eslint/parser': 5.46.1
       autoprefixer: 10.4.11
       chokidar: ^3.5.3
-      eslint: 8.30.0
-      eslint-plugin-qwik: ^0.16.1
       node-fetch: 3.3.0
       postcss: ^8.4.16
-      prettier: 2.8.1
-      prettier-plugin-tailwindcss: ^0.1.11
       tailwindcss: ^3.1.8
       tsm: ^2.3.0
-      typescript: 4.9.4
       undici: 5.14.0
       vite: 4.0.1
       vite-tsconfig-paths: 3.5.0
     devDependencies:
-      '@builder.io/qwik': 0.19.2_undici@5.14.0
-      '@builder.io/qwik-city': 0.4.0_@builder.io+qwik@0.19.2
+      '@builder.io/qwik': 0.20.1_undici@5.14.0
+      '@builder.io/qwik-city': 0.5.2_@builder.io+qwik@0.20.1
       '@crxjs/vite-plugin': 1.0.14_vite@4.0.1
-      '@types/chrome': 0.0.206
-      '@types/eslint': 8.4.10
-      '@types/node': 18.14.1
       '@types/node-fetch': 2.6.2
-      '@typescript-eslint/eslint-plugin': 5.46.1_mqzxmroayievgzgel6yrqgih5i
-      '@typescript-eslint/parser': 5.46.1_lzzuuodtsqwxnvqeq4g4likcqa
       autoprefixer: 10.4.11_postcss@8.4.21
       chokidar: 3.5.3
-      eslint: 8.30.0
-      eslint-plugin-qwik: 0.16.2_eslint@8.30.0
       node-fetch: 3.3.0
       postcss: 8.4.21
-      prettier: 2.8.1
-      prettier-plugin-tailwindcss: 0.1.13_prettier@2.8.1
       tailwindcss: 3.2.7_postcss@8.4.21
       tsm: 2.3.0
-      typescript: 4.9.4
       undici: 5.14.0
-      vite: 4.0.1_@types+node@18.14.1
+      vite: 4.0.1
       vite-tsconfig-paths: 3.5.0_vite@4.0.1
 
 packages:
@@ -310,13 +314,13 @@ packages:
     dev: true
     optional: true
 
-  /@builder.io/qwik-city/0.4.0_@builder.io+qwik@0.19.2:
-    resolution: {integrity: sha512-XNpmHzSHam7ZYrd12kJdwFerMEck0iOk3Wgb9IlVIuaN/nLuN033qrNWLVq+ZzlhplUea9DGc4job8qMix7WWA==}
+  /@builder.io/qwik-city/0.5.2_@builder.io+qwik@0.20.1:
+    resolution: {integrity: sha512-ItpQw+A4nK7Uh+Ypdx+LGqPlOzoIGWg9VgnqWCKpAfJaLnD4ffvSPrgHKQx/DdsDFFl7nBMMq4ddUQSL7xp0Yw==}
     engines: {node: '>=16.8.0 <18.0.0 || >=18.11'}
     peerDependencies:
-      '@builder.io/qwik': '>=0.19.0'
+      '@builder.io/qwik': '>=0.20.0'
     dependencies:
-      '@builder.io/qwik': 0.19.2_undici@5.14.0
+      '@builder.io/qwik': 0.20.1_undici@5.14.0
       '@mdx-js/mdx': 2.3.0
       '@types/mdx': 2.0.3
       source-map: 0.7.4
@@ -326,8 +330,8 @@ packages:
       - supports-color
     dev: true
 
-  /@builder.io/qwik/0.19.2_undici@5.14.0:
-    resolution: {integrity: sha512-Rxdyx96ucx0+nABLsg1sH7SgrlMdHgpxbR+NR3c53Ux4Jj+Xf+QHNQSIKF9zTV8KClrzmDlqILgmkDU4uMTVcg==}
+  /@builder.io/qwik/0.20.1_undici@5.14.0:
+    resolution: {integrity: sha512-GPhErG9+AaWXYKnDVQI3iAd2YNYNRBDvTS3BRx2yGbIB59t4OmnPB0vIcwJ5QtVTqNjF43NHSjhCMJYo543oLQ==}
     engines: {node: '>=16.8.0 <18.0.0 || >=18.11'}
     hasBin: true
     peerDependencies:
@@ -356,7 +360,7 @@ packages:
       picocolors: 1.0.0
       react-refresh: 0.13.0
       rollup: 2.79.1
-      vite: 4.0.1_@types+node@18.14.1
+      vite: 4.0.1
     optionalDependencies:
       '@vitejs/plugin-react': 3.1.0_vite@4.0.1
     transitivePeerDependencies:
@@ -951,7 +955,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6_@babel+core@7.21.0
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.0.1_@types+node@18.14.1
+      vite: 4.0.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3585,12 +3589,12 @@ packages:
       globrex: 0.1.2
       recrawl-sync: 2.2.3
       tsconfig-paths: 4.1.2
-      vite: 4.0.1_@types+node@18.14.1
+      vite: 4.0.1
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite/4.0.1_@types+node@18.14.1:
+  /vite/4.0.1:
     resolution: {integrity: sha512-kZQPzbDau35iWOhy3CpkrRC7It+HIHtulAzBhMqzGHKRf/4+vmh8rPDDdv98SWQrFWo6//3ozwsRmwQIPZsK9g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -3615,7 +3619,6 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.14.1
       esbuild: 0.16.17
       postcss: 8.4.21
       resolve: 1.22.1

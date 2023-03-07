@@ -1,3 +1,4 @@
+import { internalKeys } from "@yb/devtools-messages/serialize";
 import { PreviewValue } from "../PreviewNode";
 import { ObjectType, Parser } from "../type";
 import { getObjectClassName } from "../utils";
@@ -6,7 +7,7 @@ const MAX_PREVIEW_ITEM_END_INDEX = 10;
 
 const objParser: Parser<ObjectType> = {
   test: (val): val is ObjectType => {
-    return !!(val && typeof val === "object");
+    return val?.$typeof$ === "object";
   },
   displayName: (props) => {
     let clsName = getObjectClassName(props.val);
@@ -19,13 +20,15 @@ const objParser: Parser<ObjectType> = {
       </span>
     );
   },
-  customExpandable: (val) => Object.keys(val).length > 0,
+  customExpandable: (val) => Object.keys(val).length > internalKeys.length,
   expandedObj: (val) => val,
   collapsedPreview: (props) => {
-    const iterateKeys: any[] = Object.keys(props.val || {}).slice(
-      0,
-      MAX_PREVIEW_ITEM_END_INDEX
-    );
+    if (props.val?.$typeName$ !== "Object") {
+      return <></>;
+    }
+    const iterateKeys: any[] = Object.keys(props.val || {})
+      .filter((i) => !internalKeys.includes(i))
+      .slice(0, MAX_PREVIEW_ITEM_END_INDEX);
     return (
       <>
         {"{"}

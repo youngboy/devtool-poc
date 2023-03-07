@@ -65,6 +65,7 @@ const tree = plugin(({ addComponents, theme }) => {
       marginRight: "-2px",
       height: "12px",
       width: "13px",
+      flexShrink: "0",
     },
     ".tree-outline li.parent.expanded::before": {
       "-webkit-mask-position": "-16px 0",

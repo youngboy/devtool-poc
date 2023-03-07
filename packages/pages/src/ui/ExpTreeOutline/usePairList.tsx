@@ -1,4 +1,4 @@
-import { noSerialize } from "@builder.io/qwik";
+import { internalKeys } from "@yb/devtools-messages/serialize";
 import { tryGetParser } from "./parser";
 
 import { PairValue, TargetType } from "./type";
@@ -24,6 +24,9 @@ function getPairItem(key: string, target: TargetType) {
 
 export default function usePairList(target: TargetType) {
   return Object.keys(target).reduce((acc, key) => {
+    if (internalKeys.includes(key)) {
+      return acc;
+    }
     acc.push(getPairItem(key, target));
     return acc;
   }, [] as PairValue[]);

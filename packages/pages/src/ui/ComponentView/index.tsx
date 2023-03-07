@@ -1,10 +1,9 @@
 import { component$, Signal } from "@builder.io/qwik";
 import ExpTreeOutline from "../ExpTreeOutline";
-import { getQcContext } from "./utils";
 
 interface ClassProps {
   class?: string;
-  qContext?: Signal<ReturnType<typeof getQcContext> | undefined>;
+  qContext?: Signal<any>;
 }
 
 export default component$((props: ClassProps) => {
@@ -24,9 +23,9 @@ export default component$((props: ClassProps) => {
             Host
           </div>
         </div>
-        {props.qContext?.value?.host?.details ? (
+        {props.qContext?.value?.host ? (
           <ExpTreeOutline
-            target={props.qContext.value.host?.details}
+            target={props.qContext.value.host}
             class="py-[2px] px-1 font-mono text-[11px]"
           ></ExpTreeOutline>
         ) : (

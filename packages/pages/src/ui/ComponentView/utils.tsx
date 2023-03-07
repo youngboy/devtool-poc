@@ -2,7 +2,6 @@ import { noSerialize } from "@builder.io/qwik";
 import { QcElement } from "~/utils/type";
 
 export const getQcContext = (el?: QcElement) => {
-  // const el = document.querySelector("[role='tab']") as QcElement;
   if (!el || !el._qc_) {
     return {};
   }

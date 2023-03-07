@@ -66,8 +66,10 @@ export const Table = component$<TableProps>((props) => {
             tabIndex={0}
             class={{ selected: rowIndex === selectedRowIndex.value }}
             onPointerDown$={() => {
-              selectedRowIndex.value = rowIndex;
-              props.handleSelect$?.apply(null, [row, rowIndex]);
+              if (props.handleSelect$) {
+                selectedRowIndex.value = rowIndex;
+                props.handleSelect$?.apply(null, [row, rowIndex]);
+              }
             }}
           >
             {row.map((col) => (
@@ -80,8 +82,10 @@ export const Table = component$<TableProps>((props) => {
             tabIndex={0}
             class={{ selected: displayRows.length === selectedRowIndex.value }}
             onPointerDown$={() => {
-              selectedRowIndex.value = displayRows.length;
-              props.handleSelect$?.apply(null, [[], displayRows.length]);
+              if (props.handleSelect$) {
+                selectedRowIndex.value = displayRows.length;
+                props.handleSelect$?.apply(null, [[], displayRows.length]);
+              }
             }}
           >
             {displayHeaders.map((h) => (

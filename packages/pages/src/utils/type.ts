@@ -7,6 +7,7 @@ export type Qrl = {
   };
   $symbol$: string;
   $captureRef$?: [];
+  $chunk$: string;
 };
 
 type Task = {

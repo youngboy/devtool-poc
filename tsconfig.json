@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "ES2017",
+    "module": "ES2020",
+    "lib": ["es2020", "DOM", "WebWorker", "DOM.Iterable"],
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "outDir": "tmp",
+    "noEmit": true,
+    "types": ["node"],
+    "paths": {
+      "~/*": ["./packages/pages/src/*"],
+      "@yb/devtools-messages/*": ["./packages/messages/src/*"]
+    }
+  },
+  "files": ["./.eslintrc.cjs"],
+  "include": ["packages/pages/src", "packages/messages/src"]
+}

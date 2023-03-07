@@ -39,7 +39,7 @@ export const ExpTreeOutlineRow = (
         }}
       >
         <span class="flex overflow-hidden whitespace-nowrap leading-4">
-          <span class="flex-shrink-0 text-syntax-2">{props.name}</span>
+          <span class="text-syntax-2 flex-shrink-0">{props.name}</span>
           <span class="flex-shrink-0 whitespace-pre">: </span>
           <ValueNode
             parser={props.parser}
@@ -67,7 +67,7 @@ export const ExpTreeOutline = component$<ExpTreeOutlineProps>((props) => {
   return (
     <ol class={`tree-outline ${props.class || ""}`}>
       {listPairs.map((item) => {
-        // FIXME: noticed that I'm set `key` and `itemKey` there...
+        // FIXME: noticed that I'm set both `key` and `itemKey` there...
         //   (qwik-jsx) `key` is not accessible in child's props
         return (
           <ExpTreeOutlineRow

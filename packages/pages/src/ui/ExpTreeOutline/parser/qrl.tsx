@@ -1,6 +1,12 @@
 import { Parser, QrlType } from "../type";
 import { getObjectClassName } from "../utils";
 
+/**
+ * Get the attributes of a QRL object
+ * FIXME: it will break in production mode cause the qrl object is minified
+ * @param qrl
+ * @returns
+ */
 function getQrlAttrs(qrl: QrlType) {
   const attrs = {
     name: qrl.dev?.displayName || qrl.$symbol$,

@@ -22,10 +22,16 @@ const vdomParser: Parser<any> = {
       };
     }
     const { class: clz, ...rest } = val.$props$ || {};
-    return {
-      props: rest,
+    const result: Record<string, any> = {
       children: val.$children$,
     };
+    if (clz) {
+      result.className = clz;
+    }
+    if (Object.keys(result).length !== 0) {
+      result.props = rest;
+    }
+    return result;
   },
   customExpandable: (val) => val.$children$?.length > 0,
 };

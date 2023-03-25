@@ -29,14 +29,14 @@ export function serializeFactory(customReplacers: Replacer[]) {
   }
 
   function serialize(item: unknown): any {
+    if (Array.isArray(item)) {
+      return item.map(serialize);
+    }
     if (typeof item === "function") {
       return iterateObj(item, {
         $typeof$: "object",
         $typeName$: item.name,
       });
-    }
-    if (Array.isArray(item)) {
-      return item.map(serialize);
     }
     if (item && typeof item === "object") {
       return iterateObj(item, {

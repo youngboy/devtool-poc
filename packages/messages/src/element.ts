@@ -6,6 +6,10 @@ const elNs = genNamespace("element");
 
 export const elNsAnchorUpdate = elNs.useName("anchorUpdate");
 
+/**
+ * This replacer is used to replace qwik component
+ * for limit what is sent to the devtools.
+ */
 const parentCmpReplacer: Replacer = {
   test: (key, value) => !!value && key === "$parent$",
   trans: (value) => {

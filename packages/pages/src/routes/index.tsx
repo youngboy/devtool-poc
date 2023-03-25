@@ -65,8 +65,8 @@ export default component$(() => {
     <div class="index-page">
       <h1 class="mb-[34px] px-4 py-3 text-lg">DevTools</h1>
       {sections.map((s) => (
-        <>
-          <div class="header border-t border-t-details-hairline">
+        <div key={s.section}>
+          <div class="header border-t-details-hairline border-t">
             {s.section}
           </div>
           <ul
@@ -75,11 +75,11 @@ export default component$(() => {
             } gap-1 py-[10px] px-4`}
           >
             {s.pages.map((p) => (
-              <li class="basis-auto cursor-pointer border border-details-hairline px-2 text-sm leading-[200%] text-link">
+              <li class="border-details-hairline text-link basis-auto cursor-pointer border px-2 text-sm leading-[200%]">
                 {p.href ? (
                   <Link href={p.href}>
                     <div>{p.title}</div>
-                    <div class="pb-2 text-[13px] leading-[125%] text-fg-secondary hover:text-link">
+                    <div class="text-fg-secondary hover:text-link pb-2 text-[13px] leading-[125%]">
                       {p.subTitle}
                     </div>
                   </Link>
@@ -87,7 +87,7 @@ export default component$(() => {
                   <>
                     <div>{p.title}</div>
                     {p.subTitle && (
-                      <div class="pb-2 text-[13px] leading-[125%] text-fg-secondary hover:text-link">
+                      <div class="text-fg-secondary hover:text-link pb-2 text-[13px] leading-[125%]">
                         {p.subTitle}
                       </div>
                     )}
@@ -96,7 +96,7 @@ export default component$(() => {
               </li>
             ))}
           </ul>
-        </>
+        </div>
       ))}
     </div>
   );

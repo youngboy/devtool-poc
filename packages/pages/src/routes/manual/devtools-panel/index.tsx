@@ -1,7 +1,7 @@
 import {
   Component,
   component$,
-  useBrowserVisibleTask$,
+  useVisibleTask$,
   useSignal,
 } from "@builder.io/qwik";
 import { DocumentHead } from "@builder.io/qwik-city";
@@ -53,17 +53,17 @@ export default component$(() => {
     Performance: PerformanceTool,
     Requests: RequestTool,
   };
-  const mainContent = useSignal<MainCmp | undefined | null>(null);
+  // FIXME: set MainCmp type will complaining 'Identifier ("mainContent") can not be captured...
+  const mainContent = useSignal<any | undefined | null>(null);
   const selectedTool = useSignal(sidebarData[1].children[0]);
   // FIXME: useTask here causing mainContent lose reactive bindings
-  useBrowserVisibleTask$(({ track }) => {
+  useVisibleTask$(({ track }) => {
     const item = track(() => selectedTool.value);
-    // FIXME: (none ssr mode will complaining 'Identifier ("mainContent") can not be captured...')
     mainContent.value = mainEls[item.title] || undefined;
   });
 
   return (
-    <div class="border-b border-details-hairline">
+    <div class="border-details-hairline border-b">
       <TabList activeTabId={activeGuiTabId} headers={tabHeaders} />
       <ResizerWidget class="h-96" defaultSize={208}>
         <ToolSidebar

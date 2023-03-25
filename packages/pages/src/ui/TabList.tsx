@@ -1,7 +1,7 @@
 import {
   component$,
   useSignal,
-  useBrowserVisibleTask$,
+  useVisibleTask$,
   useTask$,
   Signal,
 } from "@builder.io/qwik";
@@ -39,7 +39,7 @@ export default component$((props: TabListProps) => {
       };
     }
   });
-  useBrowserVisibleTask$(() => {
+  useVisibleTask$(() => {
     props.activeTabId.value = props.headers[0]?.id;
   });
 
@@ -47,7 +47,7 @@ export default component$((props: TabListProps) => {
     <div
       role="tablist"
       ref={tablistRef}
-      class="relative flex w-full flex-pane border-y border-details-hairline bg-elevation-1 leading-[22px] text-fg-secondary"
+      class="flex-pane border-details-hairline bg-elevation-1 text-fg-secondary relative flex w-full border-y leading-[22px]"
       style={`
   --tab-active-offset: ${tabActiveStats.value.offset}px;
   --tab-active-width: ${tabActiveStats.value.width}px;
@@ -55,6 +55,7 @@ export default component$((props: TabListProps) => {
     >
       {props.headers.map((el) => (
         <div
+          key={el.id}
           role="tab"
           onPointerDown$={() => (props.activeTabId.value = el.id)}
           class={`${
@@ -66,7 +67,7 @@ export default component$((props: TabListProps) => {
           {el.title}
         </div>
       ))}
-      <div class="absolute bottom-[-1px] left-0 h-[2px] w-[var(--tab-active-width)] origin-top-left translate-x-[var(--tab-active-offset)] scale-y-75 bg-legacy-accent transition-transform dark:hidden"></div>
+      <div class="bg-legacy-accent absolute bottom-[-1px] left-0 h-[2px] w-[var(--tab-active-width)] origin-top-left translate-x-[var(--tab-active-offset)] scale-y-75 transition-transform dark:hidden"></div>
     </div>
   );
 });

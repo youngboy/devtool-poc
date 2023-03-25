@@ -31,8 +31,8 @@ importers:
 
   packages/pages:
     specifiers:
-      '@builder.io/qwik': 0.20.1
-      '@builder.io/qwik-city': 0.5.2
+      '@builder.io/qwik': ^0.24.0
+      '@builder.io/qwik-city': ^0.7.0
       '@crxjs/vite-plugin': ^1.0.14
       '@types/node-fetch': latest
       autoprefixer: 10.4.11
@@ -45,8 +45,8 @@ importers:
       vite: 4.0.1
       vite-tsconfig-paths: 3.5.0
     devDependencies:
-      '@builder.io/qwik': 0.20.1_undici@5.14.0
-      '@builder.io/qwik-city': 0.5.2_@builder.io+qwik@0.20.1
+      '@builder.io/qwik': 0.24.0_undici@5.14.0
+      '@builder.io/qwik-city': 0.7.0_@builder.io+qwik@0.24.0
       '@crxjs/vite-plugin': 1.0.14_vite@4.0.1
       '@types/node-fetch': 2.6.2
       autoprefixer: 10.4.11_postcss@8.4.21
@@ -314,24 +314,24 @@ packages:
     dev: true
     optional: true
 
-  /@builder.io/qwik-city/0.5.2_@builder.io+qwik@0.20.1:
-    resolution: {integrity: sha512-ItpQw+A4nK7Uh+Ypdx+LGqPlOzoIGWg9VgnqWCKpAfJaLnD4ffvSPrgHKQx/DdsDFFl7nBMMq4ddUQSL7xp0Yw==}
+  /@builder.io/qwik-city/0.7.0_@builder.io+qwik@0.24.0:
+    resolution: {integrity: sha512-+P/nLl8tpQVfTGkFybYlag4atUkwXQpsFE+8yAmxAH+lcxHPW3GwtYPS6QwMKkL5dlFM0VML4kKFiQYQ1r7CGw==}
     engines: {node: '>=16.8.0 <18.0.0 || >=18.11'}
     peerDependencies:
-      '@builder.io/qwik': '>=0.20.0'
+      '@builder.io/qwik': '>=0.22.0'
     dependencies:
-      '@builder.io/qwik': 0.20.1_undici@5.14.0
+      '@builder.io/qwik': 0.24.0_undici@5.14.0
       '@mdx-js/mdx': 2.3.0
       '@types/mdx': 2.0.3
       source-map: 0.7.4
       vfile: 5.3.7
-      zod: 3.20.6
+      zod: 3.21.4
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@builder.io/qwik/0.20.1_undici@5.14.0:
-    resolution: {integrity: sha512-GPhErG9+AaWXYKnDVQI3iAd2YNYNRBDvTS3BRx2yGbIB59t4OmnPB0vIcwJ5QtVTqNjF43NHSjhCMJYo543oLQ==}
+  /@builder.io/qwik/0.24.0_undici@5.14.0:
+    resolution: {integrity: sha512-IOlcV1g37MJpFovbNLgcEoEBIOkeGaAvTqi2xdM4/pR0VmGubLFBpgsdQ8kUV6rp8ON7GmAZP0tOsxOAyYRt8g==}
     engines: {node: '>=16.8.0 <18.0.0 || >=18.11'}
     hasBin: true
     peerDependencies:
@@ -2442,7 +2442,7 @@ packages:
     resolution: {integrity: sha512-WmI1gTXUBJo4/ZmSk79Wcb2HcjPJBzM1nlI/OUWA8yk2X9ik3ffNbBGsU+09BFmXaL1IBb9fiuvq6/KMiNycSg==}
     dependencies:
       '@types/mdast': 3.0.10
-      unist-util-is: 5.2.0
+      unist-util-is: 5.2.1
     dev: true
 
   /mdast-util-to-hast/12.3.0:
@@ -3476,8 +3476,10 @@ packages:
     resolution: {integrity: sha512-qF72kLmPxAw0oN2fwpWIqbXAVyEqUzDHMsbtPvOudIlUzXYFIeQIuxXQCRCFh22B7cixvU0MG7m3MW8FTq/S+A==}
     dev: true
 
-  /unist-util-is/5.2.0:
-    resolution: {integrity: sha512-Glt17jWwZeyqrFqOK0pF1Ded5U3yzJnFr8CG1GMjCWTp9zDo2p+cmD6pWbZU8AgM5WU3IzRv6+rBwhzsGh6hBQ==}
+  /unist-util-is/5.2.1:
+    resolution: {integrity: sha512-u9njyyfEh43npf1M+yGKDGVPbY/JWEemg5nH05ncKPfi+kBbKBJoTdsogMu33uhytuLlv9y0O7GH7fEdwLdLQw==}
+    dependencies:
+      '@types/unist': 2.0.6
     dev: true
 
   /unist-util-position-from-estree/1.1.2:
@@ -3509,14 +3511,14 @@ packages:
     resolution: {integrity: sha512-x6+y8g7wWMyQhL1iZfhIPhDAs7Xwbn9nRosDXl7qoPTSCy0yNxnKc+hWokFifWQIDGi154rdUqKvbCa4+1kLhg==}
     dependencies:
       '@types/unist': 2.0.6
-      unist-util-is: 5.2.0
+      unist-util-is: 5.2.1
     dev: true
 
   /unist-util-visit/4.1.2:
     resolution: {integrity: sha512-MSd8OUGISqHdVvfY9TPhyK2VdUrPgxkUtWSuMHF6XAAFuL4LokseigBnZtPnJMu+FbynTkFNnFlyjxpVKujMRg==}
     dependencies:
       '@types/unist': 2.0.6
-      unist-util-is: 5.2.0
+      unist-util-is: 5.2.1
       unist-util-visit-parents: 5.1.3
     dev: true
 
@@ -3673,8 +3675,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zod/3.20.6:
-    resolution: {integrity: sha512-oyu0m54SGCtzh6EClBVqDDlAYRz4jrVtKwQ7ZnsEmMI9HnzuZFj8QFwAY1M5uniIYACdGvv0PBWPF2kO0aNofA==}
+  /zod/3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: true
 
   /zwitch/2.0.4:

@@ -23,11 +23,11 @@ export const ToolSidebar = component$<ToolSidebarProps>((props) => {
       }}
     >
       {props.treeData.map((item, index) => (
-        <>
+        <div key={item.title}>
           <li
             class={[
               "not-expand-icon px-2 pt-[10px] pb-[6px]",
-              index > 0 ? "border-t border-details-hairline" : undefined,
+              index > 0 ? "border-details-hairline border-t" : undefined,
             ]}
           >
             {item.title}
@@ -35,6 +35,7 @@ export const ToolSidebar = component$<ToolSidebarProps>((props) => {
           <ol class="tree-outline pb-[10px]">
             {item.children.map((child) => (
               <li
+                key={child.title}
                 class={{
                   selected: props.selected.value.title === child.title,
                 }}
@@ -51,7 +52,7 @@ export const ToolSidebar = component$<ToolSidebarProps>((props) => {
               </li>
             ))}
           </ol>
-        </>
+        </div>
       ))}
     </ol>
   );

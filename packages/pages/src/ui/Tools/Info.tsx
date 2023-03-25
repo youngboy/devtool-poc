@@ -1,8 +1,4 @@
-import {
-  component$,
-  useBrowserVisibleTask$,
-  useSignal,
-} from "@builder.io/qwik";
+import { component$, useVisibleTask$, useSignal } from "@builder.io/qwik";
 import { DevData } from "~/routes/_dev";
 import { DisplayDataType, getDisplayTableData, Table } from "../Table";
 
@@ -36,7 +32,7 @@ export const menuHeaders = [
     accessor: "loader",
   },
 ];
-export default component$<InfoToolProps>((props) => {
+export default component$<InfoToolProps>(() => {
   const infoData = useSignal<DevData>();
   const routerData = useSignal<DisplayDataType>({
     displayHeaders: routerHeaders.map((r) => r.title),
@@ -46,7 +42,7 @@ export default component$<InfoToolProps>((props) => {
     displayHeaders: menuHeaders.map((r) => r.title),
     displayRows: [],
   });
-  useBrowserVisibleTask$(() => {
+  useVisibleTask$(() => {
     fetch("/_dev")
       .then((res) => res.json())
       .then((body) => {
@@ -71,10 +67,10 @@ export default component$<InfoToolProps>((props) => {
             </div>
             <div class="report-row mb-2 grid grid-cols-[min-content_1fr] leading-7">
               {Object.keys(infoData.value.versions).map((k) => (
-                <>
-                  <div class="px-[6px] text-right text-fg-secondary">{k}</div>
+                <div class="contents" key={k}>
+                  <div class="text-fg-secondary px-[6px] text-right">{k}</div>
                   <div class="px-[6px]">{infoData.value?.versions[k]}</div>
-                </>
+                </div>
               ))}
             </div>
           </div>

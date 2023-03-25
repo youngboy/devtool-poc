@@ -24,8 +24,8 @@
     "qwik": "qwik"
   },
   "devDependencies": {
-    "@builder.io/qwik": "0.20.1",
-    "@builder.io/qwik-city": "0.5.2",
+    "@builder.io/qwik": "^0.24.0",
+    "@builder.io/qwik-city": "^0.7.0",
     "@crxjs/vite-plugin": "^1.0.14",
     "@types/node-fetch": "latest",
     "autoprefixer": "10.4.11",

@@ -20,6 +20,7 @@ export const headers = [
   },
 ];
 
+// TODO: replace with real data
 export const fixtures = [
   {
     dateTime: new Date().toLocaleString(),
@@ -48,16 +49,16 @@ export const fixtures = [
   },
 ];
 
-export default component$<PerformanceProps>((props) => {
+export default component$<PerformanceProps>(() => {
   const requests = useSignal<DisplayDataType>(
     getDisplayTableData({
       headers: headers,
       rows: fixtures,
     })
   );
-  const selectedRow = useSignal();
+  const selectedRow = useSignal<any>();
   return (
-    <div class="h-full text-fg-primary">
+    <div class="text-fg-primary h-full">
       <ResizerWidget class="h-full" vertical defaultSize={280}>
         <Table
           q:slot="nav"
@@ -80,7 +81,7 @@ export default component$<PerformanceProps>((props) => {
               />
             </div>
           ) : (
-            <div class="flex h-full items-center justify-center p-7 text-[1.5em] font-bold text-fg-secondary">
+            <div class="text-fg-secondary flex h-full items-center justify-center p-7 text-[1.5em] font-bold">
               Select a value to preview
             </div>
           )}

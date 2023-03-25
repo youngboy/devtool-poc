@@ -2,7 +2,7 @@
  * a remix of solid devtools
  * More https://github.com/thetarnav/solid-devtools/blob/main/packages/shared/src/bridge.ts
  */
-import { log } from './index';
+import { log } from "./index";
 
 export interface Messages {
   // adapter -> content -> devtools.html
@@ -26,8 +26,8 @@ export type OnMessageFn = <K extends keyof Messages>(
 ) => VoidFunction;
 
 export const postWindowMessage: PostMessageFn = (id, payload?: any) => {
-  log('message posted:', id, payload);
-  window.postMessage({ id, payload }, '*');
+  log("message posted:", id, payload);
+  window.postMessage({ id, payload }, "*");
 };
 
 const listeners: {
@@ -38,10 +38,10 @@ const listeners: {
  * Important ot call this if you want to use {@link onWindowMessage}
  */
 export function startListeningWindowMessages() {
-  if (typeof window === 'undefined') return;
-  window.addEventListener('message', (event) => {
+  if (typeof window === "undefined") return;
+  window.addEventListener("message", (event) => {
     const id = event.data?.id as keyof Messages;
-    if (typeof id !== 'string') return;
+    if (typeof id !== "string") return;
     listeners[id]?.forEach((f) => f(event.data.payload as never));
   });
 }

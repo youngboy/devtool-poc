@@ -1,9 +1,4 @@
-import {
-  component$,
-  Slot,
-  useBrowserVisibleTask$,
-  useSignal,
-} from "@builder.io/qwik";
+import { component$, Slot, useVisibleTask$, useSignal } from "@builder.io/qwik";
 
 export interface ResizerWidgetProps {
   defaultSize: number;
@@ -17,7 +12,7 @@ export const ResizerWidget = component$<ResizerWidgetProps>((props) => {
   const maxSize = useSignal(Infinity);
   const edgeSafeMargin = 80;
 
-  useBrowserVisibleTask$(() => {
+  useVisibleTask$(() => {
     const rect = containerRef.value?.getBoundingClientRect();
     if (rect) {
       maxSize.value = props.vertical ? rect.height : rect.width;
@@ -37,7 +32,7 @@ export const ResizerWidget = component$<ResizerWidgetProps>((props) => {
     >
       <div
         class={[
-          "relative flex-none overflow-auto border-details-hairline",
+          "border-details-hairline relative flex-none overflow-auto",
           props.vertical ? "border-b" : "border-r",
         ]}
         style={{

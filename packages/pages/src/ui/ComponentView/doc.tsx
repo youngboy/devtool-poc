@@ -1,7 +1,7 @@
 import {
   component$,
   noSerialize,
-  useBrowserVisibleTask$,
+  useVisibleTask$,
   useSignal,
 } from "@builder.io/qwik";
 import InspectEl from ".";
@@ -15,14 +15,14 @@ export const Selected = component$((props: ClassProps) => {
   const qContext = useSignal<ReturnType<typeof getQcContext> | undefined>(
     undefined
   );
-  useBrowserVisibleTask$(async () => {
+  useVisibleTask$(async () => {
     qContext.value = noSerialize(
       getQcContext(document.querySelector("[role='tab']") || undefined)
     );
   });
-  // FIXME: (qwik-jsx) warning about useBrowserVisibleTask$ if without outer placeholder div
+  // FIXME: (qwik-jsx) warning about useVisibleTask$ if without outer placeholder div
   return (
-    <div>
+    <div class={props.class}>
       <InspectEl qContext={qContext} />
     </div>
   );

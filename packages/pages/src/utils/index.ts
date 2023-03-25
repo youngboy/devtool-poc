@@ -4,7 +4,7 @@ export function noop() {
 
 const getLogLabel = () => [
   `%cqwik-devtools`,
-  'color: #fff; background: #2c4f7c; padding: 1px 4px;',
+  "color: #fff; background: #2c4f7c; padding: 1px 4px;",
 ];
 
 export function info<T>(data: T): T {
@@ -19,8 +19,15 @@ export function warn(...args: any[]): void {
   console.warn(...getLogLabel(), ...args);
 }
 
-export const createCallbackStack = <A0 = void, A1 = void, A2 = void, A3 = void>(): {
-  push: (...callbacks: ((arg0: A0, arg1: A1, arg2: A2, arg3: A3) => void)[]) => void;
+export const createCallbackStack = <
+  A0 = void,
+  A1 = void,
+  A2 = void,
+  A3 = void
+>(): {
+  push: (
+    ...callbacks: ((arg0: A0, arg1: A1, arg2: A2, arg3: A3) => void)[]
+  ) => void;
   execute: (arg0: A0, arg1: A1, arg2: A2, arg3: A3) => void;
   clear: VoidFunction;
 } => {

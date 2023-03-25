@@ -46,7 +46,7 @@ export const Table = component$<TableProps>((props) => {
   return (
     <table
       style={props.style}
-      class={["border border-details-hairline", props.class]}
+      class={["border-details-hairline border", props.class]}
     >
       <colgroup>
         {displayHeaders.map(() => (
@@ -73,7 +73,7 @@ export const Table = component$<TableProps>((props) => {
             }}
           >
             {row.map((col) => (
-              <td>{col || <div>--</div>}</td>
+              <td key={col}>{col || <div>--</div>}</td>
             ))}
           </tr>
         ))}
@@ -89,14 +89,14 @@ export const Table = component$<TableProps>((props) => {
             }}
           >
             {displayHeaders.map((h) => (
-              <td></td>
+              <td key={h}></td>
             ))}
           </tr>
         ) : null}
         {props.fillBottom ? (
           <tr class="fill-bottom-row h-auto">
             {displayHeaders.map((h) => (
-              <td class="h-auto border-b-0"></td>
+              <td key={h} class="h-auto border-b-0"></td>
             ))}
           </tr>
         ) : null}

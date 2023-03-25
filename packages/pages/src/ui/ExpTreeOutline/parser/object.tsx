@@ -22,25 +22,33 @@ const objParser: Parser<ObjectType> = {
   },
   customExpandable: (val) => Object.keys(val).length > internalKeys.length,
   expandedObj: (val) => val,
+  // This code is used to create the preview of an object in the sidebar when it is not expand,
+  // by displaying an object's key-value pair in the table view.
   collapsedPreview: (props) => {
-    if (props.val?.$typeName$ !== "Object") {
-      return <></>;
-    }
-    const iterateKeys: any[] = Object.keys(props.val || {})
-      .filter((i) => !internalKeys.includes(i))
-      .slice(0, MAX_PREVIEW_ITEM_END_INDEX);
+    // We only display the first MAX_PREVIEW_ITEM_END_INDEX items in the object.
+    // We filter out internal keys like $typeof$ and $typename$ for serialize usage.
+    const iterateKeys: any[] =
+      props.val?.$typeName$ !== "Object"
+        ? []
+        : Object.keys(props.val || {})
+            .filter((i) => !internalKeys.includes(i))
+            .slice(0, MAX_PREVIEW_ITEM_END_INDEX);
     return (
       <>
-        {"{"}
-        {iterateKeys.map((k, index) => (
+        {props.val?.$typeName$ !== "Object" ? null : (
           <>
-            <span class="text-fg-secondary">{k}</span>
-            {": "}
-            <PreviewValue value={(props.val as any)[k]} />
-            {index < iterateKeys.length - 1 && ", "}
+            {"{"}
+            {iterateKeys.map((k, index) => (
+              <>
+                <span class="text-fg-secondary">{k}</span>
+                {": "}
+                <PreviewValue value={(props.val as any)[k]} />
+                {index < iterateKeys.length - 1 && ", "}
+              </>
+            ))}
+            {"}"}
           </>
-        ))}
-        {"}"}
+        )}
       </>
     );
   },

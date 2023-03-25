@@ -1,8 +1,4 @@
-import {
-  component$,
-  useBrowserVisibleTask$,
-  useSignal,
-} from "@builder.io/qwik";
+import { component$, useVisibleTask$, useSignal } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 import {
   elNsAnchorUpdate,
@@ -18,7 +14,7 @@ export default component$(() => {
   const activeGuiTabId = useSignal<string | number>(-1);
   const qContext = useSignal<any>(undefined);
 
-  useBrowserVisibleTask$(() => {
+  useVisibleTask$(() => {
     return elNsAnchorUpdate.handleMessage((d: any) => {
       qContext.value = {
         context: {
